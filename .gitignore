@@ -3,3 +3,4 @@ RESULTS
 DATA
 .DS_Store
 __pycache__/
+env

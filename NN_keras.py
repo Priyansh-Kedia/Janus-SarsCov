@@ -4,7 +4,7 @@ import numpy as np
 # import torch.nn as nn
 # import torch.nn.functional as F
 
-import tensorflow as torch
+import tensorflow as tf
 import tensorflow.nn as nn
 # import tensorflow.nn.functional as F
 
@@ -334,32 +334,44 @@ def obtain_discr_encoding(molecules_here, num_processors):
     return np.array(dataset_x)
     
 
-class Net(torch.nn.Module):
+class Net(tf.Module):
     def __init__(self, n_feature, h_sizes, n_output):
         super(Net, self).__init__()
         # Layers
-        self.hidden = nn.ModuleList()
+        self.hidden = tf.keras.Sequential()
+        layers = []
         for k in range(len(h_sizes)-1):
-            self.hidden.append(nn.Linear(h_sizes[k], h_sizes[k+1]))
-        self.predict = torch.nn.Linear(h_sizes[-1], n_output)
+            layers.append(tf.keras.layers.Dense(h_sizes[k+1], activation =None))
+            # layers.append(nn.Linear(h_sizes[k], h_sizes[k+1]))
+        self.hidden(*layers)
+            # self.hidden.append(nn.Linear(h_sizes[k], h_sizes[k+1]))
+        # self.predict = nn.Linear(h_sizes[-1], n_output)
+        self.predict = tf.keras.layers.Dense(n_output)
 
 
     def forward(self, x):
         for layer in self.hidden:
-            x = torch.sigmoid(layer(x))
-        output= torch.math.sigmoid(self.predict(x))
+            x = tf.math.sigmoid(layer(x))
+        output= tf.math.sigmoid(self.predict(x))
 
         return output
+
+    def __call__(self, x):
+        for layer in self.hidden.layers:
+            x = layer(x)
+        return x
 
 def create_discriminator(init_len, n_hidden, device):
     """
     Define an instance of the discriminator 
     """
     n_hidden.insert(0, init_len)
+    with tf.device(device):
 
-    net = Net(n_feature=init_len, h_sizes=n_hidden, n_output=1).to(device)
-    optimizer = torch.optim.Adam(net.parameters(), lr=0.001, weight_decay=1e-4)
-    loss_func = torch.nn.BCELoss()
+        net = Net(n_feature=init_len, h_sizes=n_hidden, n_output=1) #.to(device)
+        # optimizer = tf.keras.optimizers.Adam(net.parameters(), lr=0.001, weight_decay=1e-4)
+        optimizer = tf.keras.optimizers.Adam(lr=0.001, decay=1e-4)
+        loss_func = tf.keras.losses.BinaryCrossentropy()
     
     return (net, optimizer, loss_func)
 
@@ -388,14 +400,14 @@ def obtain_initial_discriminator(disc_layers, device):
 
 def do_x_training_steps(data_x, data_y, net, optimizer, loss_func, steps, graph_x_counter, device):
     
-    data_x = torch.tensor(data_x.astype(np.float32), device=device)
-    data_y = torch.tensor(data_y, device=device, dtype=torch.float)
+    data_x = tf.convert_to_tensor(data_x, dtype=tf.float32)
+    data_y = tf.convert_to_tensor(data_y, dtype=tf.float32)
     
-    net.train()
+    # net.train()
     for t in range(steps):
         predictions = net(data_x)
 
-        loss = loss_func(predictions, data_y.reshape(len(data_y), 1))
+        loss = loss_func(predictions, tf.reshape(data_y, shape = (len(data_y, 1))))
         
         if t % 400 == 0: 
             print('        Epoch:{} Loss:{}'.format(t, loss.item()))
@@ -412,10 +424,10 @@ def save_model(model, generation_index, dir_name):
     if not os.path.isdir(out_dir): 
         os.system('mkdir {}'.format(out_dir))   
         
-    torch.save(model, out_dir+'/model')
+    tf.keras.save(model, out_dir+'/model')
 
 def load_saved_model(generation_index):
-    model = torch.load("sarsmodel.pkl")
+    model = tf.keras.load("sarsmodel.pkl")
     # model = torch.load('./RESULTS/{}/model'.format(generation_index))
     model = model.eval()
     return model 
@@ -423,7 +435,7 @@ def load_saved_model(generation_index):
 def do_predictions(discriminator, data_x, device):
     discriminator = discriminator.eval()
     
-    data_x = torch.tensor(data_x.astype(np.float32), device=device)
+    data_x = tf.Tensor(data_x.astype(np.float32), device=device)
     
     outputs = discriminator(data_x)
     predictions = outputs.detach().cpu().numpy() # Return as a numpy array
@@ -456,7 +468,7 @@ def obtain_new_pred(smiles_ls, generation_index):
         if i % 10000 == 0: 
             print('        Predicting: {}/{}'.format(i, len(smiles_ls)))
         data_x  = obtain_discr_encoding([smi], 1)
-        data_x  = torch.tensor(data_x.astype(np.float32), device='cpu')
+        data_x  = tf.Tensor(data_x.astype(np.float32), device='cpu')
         outputs = model(data_x)
         out_    = outputs.detach().cpu().numpy()
         predictions.append(float(out_[0]))
