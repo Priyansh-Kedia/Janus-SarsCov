@@ -4,3 +4,4 @@ DATA
 .DS_Store
 __pycache__/
 env
+the_saved_model

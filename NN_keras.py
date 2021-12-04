@@ -8,6 +8,9 @@ import tensorflow as tf
 import tensorflow.nn as nn
 # import tensorflow.nn.functional as F
 
+from tensorflow.keras.layers import Dense
+from tensorflow.math import sigmoid
+
 import rdkit
 from rdkit import Chem
 from rdkit import RDLogger
@@ -16,7 +19,7 @@ RDLogger.DisableLog('rdApp.*')
 
 import inspect
 from collections import OrderedDict
-
+import pickle
 import multiprocessing
 
 
@@ -334,32 +337,48 @@ def obtain_discr_encoding(molecules_here, num_processors):
     return np.array(dataset_x)
     
 
+# class Net(torch.nn.Module):
+#     def __init__(self, n_feature, h_sizes, n_output):
+#         super(Net, self).__init__()
+#         # Layers
+#         self.hidden = nn.ModuleList()
+#         for k in range(len(h_sizes)-1):
+#             self.hidden.append(nn.Linear(h_sizes[k], h_sizes[k+1]))
+#         self.predict = Dense(n_output, shape = (h_sizes[-1],), activation = None)
+
+
+#     def forward(self, x):
+#         for layer in self.hidden:
+#             x = torch.sigmoid(layer(x))
+#         output= F.sigmoid(self.predict(x))
+
+#         return output
+
 class Net(tf.Module):
     def __init__(self, n_feature, h_sizes, n_output):
         super(Net, self).__init__()
-        # Layers
-        self.hidden = tf.keras.Sequential()
-        layers = []
-        for k in range(len(h_sizes)-1):
-            layers.append(tf.keras.layers.Dense(h_sizes[k+1], activation =None))
-            # layers.append(nn.Linear(h_sizes[k], h_sizes[k+1]))
-        self.hidden(*layers)
-            # self.hidden.append(nn.Linear(h_sizes[k], h_sizes[k+1]))
-        # self.predict = nn.Linear(h_sizes[-1], n_output)
-        self.predict = tf.keras.layers.Dense(n_output)
+        self.hidden = self.create_layers(h_sizes, n_output)
+        self.predict = Dense(n_output, input_shape = (h_sizes[-1],), activation = None)
 
-
+    def create_layers(self, h_sizes, n_output):
+        hidden = []
+        for k in range(len(h_sizes) - 1):
+            hidden.append(Dense(h_sizes[k+1], input_shape=(h_sizes[k],), activation = None))
+        return hidden
+    
     def forward(self, x):
         for layer in self.hidden:
-            x = tf.math.sigmoid(layer(x))
-        output= tf.math.sigmoid(self.predict(x))
+            x = sigmoid(layer(x))
+        output = tf.nn.sigmoid(self.predict(x))
 
         return output
 
     def __call__(self, x):
-        for layer in self.hidden.layers:
-            x = layer(x)
-        return x
+        for layer in self.hidden:
+            x = sigmoid(layer(x))
+        output = tf.nn.sigmoid(self.predict(x))
+
+        return output
 
 def create_discriminator(init_len, n_hidden, device):
     """
@@ -407,14 +426,21 @@ def do_x_training_steps(data_x, data_y, net, optimizer, loss_func, steps, graph_
     for t in range(steps):
         predictions = net(data_x)
 
-        loss = loss_func(predictions, tf.reshape(data_y, shape = (len(data_y, 1))))
+        loss = loss_func(predictions, tf.reshape(data_y, shape = (len(data_y), 1)))
         
         if t % 400 == 0: 
-            print('        Epoch:{} Loss:{}'.format(t, loss.item()))
+            print('        Epoch:{} Loss'.format(t))
 
-        optimizer.zero_grad()
-        loss.backward(retain_graph=True)
-        optimizer.step()
+        try:
+            net.cleargrads()
+        except Exception as e:
+            print("optimizer " + str(e))
+        
+        try:
+            loss.backward(retain_graph=True)
+        except Exception as e:
+            print("loss " + str(e))
+        # optimizer.step()
 
     return net
 
@@ -423,11 +449,14 @@ def save_model(model, generation_index, dir_name):
     
     if not os.path.isdir(out_dir): 
         os.system('mkdir {}'.format(out_dir))   
-        
-    tf.keras.save(model, out_dir+'/model')
+    
+    tf.saved_model.save(model, "the_saved_model")
+    # model.save(out_dir + "/model")
+    # tf.keras.save(model, out_dir+'/model')
 
 def load_saved_model(generation_index):
-    model = tf.keras.load("sarsmodel.pkl")
+    # model = tf.keras.models.load_model("sarsmodel.pkl")
+    model = pickle.load(open('sarsmodel.pkl', 'rb'))
     # model = torch.load('./RESULTS/{}/model'.format(generation_index))
     model = model.eval()
     return model 
