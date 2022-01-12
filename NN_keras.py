@@ -1,6 +1,6 @@
 import os
 import numpy as np
-# import torch
+import torch
 # import torch.nn as nn
 # import torch.nn.functional as F
 
@@ -366,6 +366,7 @@ class Net(tf.Module):
             hidden.append(Dense(h_sizes[k+1], input_shape=(h_sizes[k],), activation = None))
         return hidden
     
+
     def forward(self, x):
         for layer in self.hidden:
             x = sigmoid(layer(x))
@@ -458,7 +459,8 @@ def load_saved_model(generation_index):
     # model = tf.keras.models.load_model("sarsmodel.pkl")
     model = pickle.load(open('sarsmodel.pkl', 'rb'))
     # model = torch.load('./RESULTS/{}/model'.format(generation_index))
-    model = model.eval()
+    # model = model.eval()
+    model = model.model
     return model 
 
 def do_predictions(discriminator, data_x, device):
@@ -497,7 +499,7 @@ def obtain_new_pred(smiles_ls, generation_index):
         if i % 10000 == 0: 
             print('        Predicting: {}/{}'.format(i, len(smiles_ls)))
         data_x  = obtain_discr_encoding([smi], 1)
-        data_x  = tf.Tensor(data_x.astype(np.float32), device='cpu')
+        data_x  = torch.tensor(data_x.astype(np.float32), device='cpu')
         outputs = model(data_x)
         out_    = outputs.detach().cpu().numpy()
         predictions.append(float(out_[0]))

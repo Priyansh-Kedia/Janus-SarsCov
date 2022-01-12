@@ -466,3 +466,16 @@ def obtain_new_pred(smiles_ls, generation_index):
 
     return predictions
 
+if __name__ == '__main__':
+    # model = torch.load("3CLEnzymaticDes-rdkDes-GrandientBoostingClassifier_best.pkl")
+    # # model = torch.load('./RESULTS/{}/model'.format(generation_index))
+    # model = model.eval()
+
+    import pickle
+
+
+    with open('sarsmodel.pkl', 'rb') as f:
+        data = pickle.load(f)
+        print(data.model)
+        model = data.model
+        model.eval()
