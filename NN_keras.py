@@ -500,8 +500,9 @@ def obtain_new_pred(smiles_ls, generation_index):
             print('        Predicting: {}/{}'.format(i, len(smiles_ls)))
         data_x  = obtain_discr_encoding([smi], 1)
         data_x  = torch.tensor(data_x.astype(np.float32), device='cpu')
-        outputs = model(data_x)
-        out_    = outputs.detach().cpu().numpy()
+        # outputs = model(data_x)
+        outputs = model.predict(data_x)
+        out_    = outputs #.detach().cpu().numpy()
         predictions.append(float(out_[0]))
 
     return predictions
