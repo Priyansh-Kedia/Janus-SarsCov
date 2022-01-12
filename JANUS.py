@@ -26,7 +26,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 from params_init import calc_prop, generate_params
-from NN_keras import train_and_save_model, obtain_new_pred
+from NN import train_and_save_model, obtain_new_pred
 
 
 def sanitize_smiles(smi):    
