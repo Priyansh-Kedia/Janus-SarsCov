@@ -22,6 +22,9 @@ from collections import OrderedDict
 import multiprocessing
 
 import pickle
+
+global manager, lock
+
 # manager = multiprocessing.Manager()
 # lock = multiprocessing.Lock()
 
