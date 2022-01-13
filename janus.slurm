@@ -40,3 +40,5 @@ conda activate janus
 conda env update --file environment.yml
 
 bash startup.sh
+
+conda deactivate
