@@ -20,11 +20,11 @@
 #   are 4 threads per core, we want 4*56=224 process in each node
 
 #SBATCH -J janus
-#SBATCH -p normal
-#SBATCH -N 4               # Total # of nodes
-#SBATCH -n 32              # Total # of mpi tasks
 #SBATCH -o janus.o%j
 #SBATCH -e janus.e%j
+#SBATCH -p normal
+#SBATCH -N 4               # Total # of nodes 
+#SBATCH -n 32              # Total # of mpi tasks
 #SBATCH -t 24:00:00
 #SBATCH --mail-type=all    # Send email at begin and end of job
 #SBATCH -A VinaXB       # Project/Allocation name (req'd if you have more than 1)
