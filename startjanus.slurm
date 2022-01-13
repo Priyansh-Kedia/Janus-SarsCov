@@ -38,7 +38,8 @@ source ~/anaconda3/etc/profile.d/conda.sh
 conda activate janus
 
 pip install --no-deps -r requirements.txt
-conda env update --file environment.yml
+conda install pytorch pandas numpy
+# conda env update --file environment.yml
 
 bash startup.sh
 
