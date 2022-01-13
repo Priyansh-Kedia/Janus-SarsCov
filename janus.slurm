@@ -37,6 +37,7 @@ module load launcher
 source ~/anaconda3/etc/profile.d/conda.sh
 conda activate janus
 
+pip install -r requirements.txt
 conda env update --file environment.yml
 
 bash startup.sh
