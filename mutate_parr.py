@@ -14,7 +14,7 @@ from rdkit.Chem import MolFromSmiles as smi2mol
 from rdkit.Chem import MolToSmiles as mol2smi
 from selfies import encoder, decoder 
 
-# global manager, lock
+global manager, lock
 
 # manager = multiprocessing.Manager()
 # lock = multiprocessing.Lock()
