@@ -43,6 +43,8 @@ pip install --upgrade pip
 conda install pytorch pandas numpy
 # conda env update --file environment.yml
 
+conda install --file environment.txt
+
 python3 ./JANUS.py
 
 conda deactivate
