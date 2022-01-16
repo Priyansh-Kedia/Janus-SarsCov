@@ -1,1 +1,1 @@
-./JANUS.py
+python3 JANUS.py
