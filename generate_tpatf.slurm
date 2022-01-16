@@ -19,33 +19,33 @@
 # PPN: Process per node. Since each node has 56 cores and there
 #   are 4 threads per core, we want 4*56=224 process in each node
 
-#SBATCH -J janus
+#SBATCH -J numpy_files
 #SBATCH -N 4 -n 272
 #SBATCH -p normal
-#SBATCH -o janus.o%j
-#SBATCH -e janus.e%j
+#SBATCH -o numpy_files.o%j
+#SBATCH -e numpy_files.e%j
 #SBATCH -t 24:00:00
 #SBATCH --mail-type=all    # Send email at begin and end of job
 #SBATCH -A VinaXB       # Project/Allocation name (req'd if you have more than 1)
-#SBATCH --mail-user=kediapriyansh@gmail.com
+#SBATCH --mail-user=manikya.varshney@gmail.com
 
-
+ 
 #------------------------------------------------------
 module purge
 module load TACC
 module load launcher
 source ~/anaconda3/etc/profile.d/conda.sh
-conda activate janus
-
-conda env update --file environment.yml
+conda env create -f environment.yml
+conda activate subcell
+pip install pandarallel
 
 export LAUNCHER_PLUGIN_DIR=$LAUNCHER_DIR/plugins
 export LAUNCHER_RMI=SLURM
-export LAUNCHER_JOB_FILE=startup.sh
+export LAUNCHER_JOB_FILE=generate_tpatf.sh
 export LAUNCHER_WORKDIR=$PWD
 export LAUNCHER_NHOSTS=4
 export LAUNCHER_PPN=1
 export LAUNCHER_SCHED=dynamic
 export LAUNCHER_BIND=1
 
-conda deactivate
+$LAUNCHER_DIR/paramrun
