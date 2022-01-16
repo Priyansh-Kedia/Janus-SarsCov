@@ -20,11 +20,10 @@
 #   are 4 threads per core, we want 4*56=224 process in each node
 
 #SBATCH -J janus
+#SBATCH -N 4 -n 272
+#SBATCH -p normal
 #SBATCH -o janus.o%j
 #SBATCH -e janus.e%j
-#SBATCH -p normal
-#SBATCH -N 4               # Total # of nodes 
-#SBATCH -n 32              # Total # of mpi tasks
 #SBATCH -t 24:00:00
 #SBATCH --mail-type=all    # Send email at begin and end of job
 #SBATCH -A VinaXB       # Project/Allocation name (req'd if you have more than 1)
@@ -42,6 +41,13 @@ pip install --no-deps -r requirements.txt
 conda install pytorch pandas numpy
 # conda env update --file environment.yml
 
-bash startup.sh
+export LAUNCHER_PLUGIN_DIR=$LAUNCHER_DIR/plugins
+export LAUNCHER_RMI=SLURM
+export LAUNCHER_JOB_FILE=startup.sh
+export LAUNCHER_WORKDIR=$PWD
+export LAUNCHER_NHOSTS=4
+export LAUNCHER_PPN=1
+export LAUNCHER_SCHED=dynamic
+export LAUNCHER_BIND=1
 
 conda deactivate
