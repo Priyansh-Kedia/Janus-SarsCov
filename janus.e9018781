@@ -1,0 +1,206 @@
+  ERROR: Failed to restore /home1/08213/pkedia/anaconda3/envs/janus/bin/convert-onnx-to-caffe2
+ERROR: Could not install packages due to an OSError: [Errno 122] Disk quota exceeded
+
+
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.10.3
+  latest version: 4.11.0
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+Traceback (most recent call last):
+  File "./JANUS.py", line 215, in <module>
+    mut_smi_dict = get_mutated_smiles(replace_smiles[0: len(replace_smiles)//2],  alphabet=alphabet) # Half the molecuules are to be mutated     
+  File "/work2/08213/pkedia/stampede2/Janus-SarsCov/mutate_parr.py", line 266, in get_mutated_smiles
+    mut_smiles = create_parr_process(chunks, alphabet, 'logP', num_random_samples=5, num_mutations=5)
+  File "/work2/08213/pkedia/stampede2/Janus-SarsCov/mutate_parr.py", line 245, in create_parr_process
+    item.start()
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/process.py", line 121, in start
+    self._popen = self._Popen(self)
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/context.py", line 224, in _Popen
+    return _default_context.get_context().Process._Popen(process_obj)
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/context.py", line 277, in _Popen
+    return Popen(process_obj)
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/popen_fork.py", line 19, in __init__
+    self._launch(process_obj)
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/popen_fork.py", line 70, in _launch
+    self.pid = os.fork()
+OSError: [Errno 12] Cannot allocate memory
+Process Process-64:
+Traceback (most recent call last):
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/work2/08213/pkedia/stampede2/Janus-SarsCov/mutate_parr.py", line 210, in calc_parr_prop
+    props_collect[property_name][smile] = get_prop_material(smile, alphabet=alphabet, num_random_samples=num_random_samples, num_mutations=num_mutations)  # TODO: TESTING
+  File "<string>", line 2, in __getitem__
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 835, in _callmethod
+    kind, result = conn.recv()
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/connection.py", line 251, in recv
+    return _ForkingPickler.loads(buf.getbuffer())
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 959, in RebuildProxy
+    return func(token, serializer, incref=incref, **kwds)
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 809, in __init__
+    self._incref()
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 863, in _incref
+    conn = self._Client(self._token.address, authkey=self._authkey)
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/connection.py", line 502, in Client
+    c = SocketClient(address)
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/connection.py", line 630, in SocketClient
+    s.connect(address)
+FileNotFoundError: [Errno 2] No such file or directory
+Process Process-67:
+Traceback (most recent call last):
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 827, in _callmethod
+    conn = self._tls.connection
+AttributeError: 'ForkAwareLocal' object has no attribute 'connection'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/work2/08213/pkedia/stampede2/Janus-SarsCov/mutate_parr.py", line 210, in calc_parr_prop
+    props_collect[property_name][smile] = get_prop_material(smile, alphabet=alphabet, num_random_samples=num_random_samples, num_mutations=num_mutations)  # TODO: TESTING
+  File "<string>", line 2, in __getitem__
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 831, in _callmethod
+    self._connect()
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 818, in _connect
+    conn = self._Client(self._token.address, authkey=self._authkey)
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/connection.py", line 502, in Client
+    c = SocketClient(address)
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/connection.py", line 630, in SocketClient
+    s.connect(address)
+FileNotFoundError: [Errno 2] No such file or directory
+Process Process-65:
+Traceback (most recent call last):
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 827, in _callmethod
+    conn = self._tls.connection
+AttributeError: 'ForkAwareLocal' object has no attribute 'connection'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/work2/08213/pkedia/stampede2/Janus-SarsCov/mutate_parr.py", line 210, in calc_parr_prop
+    props_collect[property_name][smile] = get_prop_material(smile, alphabet=alphabet, num_random_samples=num_random_samples, num_mutations=num_mutations)  # TODO: TESTING
+  File "<string>", line 2, in __getitem__
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 831, in _callmethod
+    self._connect()
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 818, in _connect
+    conn = self._Client(self._token.address, authkey=self._authkey)
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/connection.py", line 502, in Client
+    c = SocketClient(address)
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/connection.py", line 630, in SocketClient
+    s.connect(address)
+FileNotFoundError: [Errno 2] No such file or directory
+Process Process-69:
+Traceback (most recent call last):
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 827, in _callmethod
+    conn = self._tls.connection
+AttributeError: 'ForkAwareLocal' object has no attribute 'connection'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/work2/08213/pkedia/stampede2/Janus-SarsCov/mutate_parr.py", line 210, in calc_parr_prop
+    props_collect[property_name][smile] = get_prop_material(smile, alphabet=alphabet, num_random_samples=num_random_samples, num_mutations=num_mutations)  # TODO: TESTING
+  File "<string>", line 2, in __getitem__
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 831, in _callmethod
+    self._connect()
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 818, in _connect
+    conn = self._Client(self._token.address, authkey=self._authkey)
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/connection.py", line 502, in Client
+    c = SocketClient(address)
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/connection.py", line 630, in SocketClient
+    s.connect(address)
+FileNotFoundError: [Errno 2] No such file or directory
+Process Process-66:
+Traceback (most recent call last):
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 827, in _callmethod
+    conn = self._tls.connection
+AttributeError: 'ForkAwareLocal' object has no attribute 'connection'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/work2/08213/pkedia/stampede2/Janus-SarsCov/mutate_parr.py", line 210, in calc_parr_prop
+    props_collect[property_name][smile] = get_prop_material(smile, alphabet=alphabet, num_random_samples=num_random_samples, num_mutations=num_mutations)  # TODO: TESTING
+  File "<string>", line 2, in __getitem__
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 831, in _callmethod
+    self._connect()
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 818, in _connect
+    conn = self._Client(self._token.address, authkey=self._authkey)
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/connection.py", line 502, in Client
+    c = SocketClient(address)
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/connection.py", line 630, in SocketClient
+    s.connect(address)
+FileNotFoundError: [Errno 2] No such file or directory
+Process Process-62:
+Traceback (most recent call last):
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 827, in _callmethod
+    conn = self._tls.connection
+AttributeError: 'ForkAwareLocal' object has no attribute 'connection'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/work2/08213/pkedia/stampede2/Janus-SarsCov/mutate_parr.py", line 210, in calc_parr_prop
+    props_collect[property_name][smile] = get_prop_material(smile, alphabet=alphabet, num_random_samples=num_random_samples, num_mutations=num_mutations)  # TODO: TESTING
+  File "<string>", line 2, in __getitem__
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 831, in _callmethod
+    self._connect()
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 818, in _connect
+    conn = self._Client(self._token.address, authkey=self._authkey)
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/connection.py", line 502, in Client
+    c = SocketClient(address)
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/connection.py", line 630, in SocketClient
+    s.connect(address)
+FileNotFoundError: [Errno 2] No such file or directory
+Process Process-68:
+Traceback (most recent call last):
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 827, in _callmethod
+    conn = self._tls.connection
+AttributeError: 'ForkAwareLocal' object has no attribute 'connection'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/work2/08213/pkedia/stampede2/Janus-SarsCov/mutate_parr.py", line 210, in calc_parr_prop
+    props_collect[property_name][smile] = get_prop_material(smile, alphabet=alphabet, num_random_samples=num_random_samples, num_mutations=num_mutations)  # TODO: TESTING
+  File "<string>", line 2, in __getitem__
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 831, in _callmethod
+    self._connect()
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/managers.py", line 818, in _connect
+    conn = self._Client(self._token.address, authkey=self._authkey)
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/connection.py", line 502, in Client
+    c = SocketClient(address)
+  File "/home1/08213/pkedia/anaconda3/envs/janus/lib/python3.8/multiprocessing/connection.py", line 630, in SocketClient
+    s.connect(address)
+FileNotFoundError: [Errno 2] No such file or directory
