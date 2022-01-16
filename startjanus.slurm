@@ -17,7 +17,7 @@
 # n: Number of cores. For frontera it is N*56
 # NHOSTS: Usually the same as N
 # PPN: Process per node. Since each node has 56 cores and there
-#   are 4 threads per core, we want 4*56=224 process in each node
+#   are 4 threads per core, we want 4*68=224 process in each node
 
 #SBATCH -J janus
 #SBATCH -N 4 -n 272
@@ -41,8 +41,8 @@ pip install --upgrade pip
 
 pip install --no-deps -r requirements.txt
 conda install pytorch pandas numpy
-# conda env update --file environment.yml
-conda env update --file env.yml --prune
+conda env update --file environment.yml
+# conda env update --file env.yml --prune
 # conda install --file environment.txt
 
 ./JANUS.py
