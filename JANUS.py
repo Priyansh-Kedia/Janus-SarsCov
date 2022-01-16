@@ -143,7 +143,7 @@ def get_good_bad_smiles(fitness, population, generation_size):
 
 
 if __name__ == '__main__': 
-    
+    print("called this function")
     params_ = generate_params()
     start_time = time.time()
     with open(params_['start_population'], 'r') as f: 
