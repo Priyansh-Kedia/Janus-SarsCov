@@ -34,7 +34,7 @@
 module purge
 module load TACC
 module load launcher
-source ~/anaconda3/etc/profile.d/conda.sh
+source /work2/08213/pkedia/stampede2/anaconda3/etc/profile.d/conda.sh
 conda activate janus
 
 # pip install --upgrade pip
