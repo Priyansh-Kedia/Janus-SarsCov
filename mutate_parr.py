@@ -126,7 +126,14 @@ def get_prop_material(smile, alphabet, num_random_samples, num_mutations):
             if i == 0:  mutated_sf.append(mutate_sf(sf_chars, alphabet))
             else:       mutated_sf.append(mutate_sf ( get_selfie_chars(mutated_sf[-1]), alphabet ))
             
-    mutated_smiles = [decoder(x) for x in mutated_sf]    
+    mutated_smiles = []
+    for x in mutated_sf:
+        try:
+            mutated_smiles.append(decoder(x))
+        except Exception as e:
+            print(e)
+    # for decoder(x) for x in mutated_sf    
+
     mutated_smiles_canon = []
     for item in mutated_smiles: 
         try: 
