@@ -240,10 +240,20 @@ def create_parr_process(chunks, alphabet, property_name, num_random_samples, num
         
         if property_name == 'logP':
             process_collector.append(multiprocessing.Process(target=calc_parr_prop, args=(item, property_name, props_collect, num_random_samples, num_mutations, alphabet, )))   
-    
+    max_jobs = 64
+    jobs_running = 0
     for item in process_collector:
         print("called here")
         item.start()
+
+        jobs_running += 1
+
+        if jobs_running >= max_jobs:
+            while jobs_running >= max_jobs:
+                jobs_running = 0
+                for p in process_collector:
+                    jobs_running += p.is_alive()
+        
     
     for item in process_collector: # wait for all parallel processes to finish
         item.join()   
