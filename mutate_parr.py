@@ -42,15 +42,18 @@ def mutate_sf(sf_chars, alphabet):
     '''
     Given a list of SELFIES alphabets, make random changes to the molecule using 
     alphabet. Opertations to molecules are character replacements, additions and deletions. 
+
     Parameters
     ----------
     sf_chars : (list of string alphabets)
         List of string alphabets for a SELFIE string.
     alphabet : (list of SELFIE strings)
         Replacements and addition operations are performed using this list of SELFIE strings.
+
     Returns
     -------
     Muatted SELFIE string.
+
     '''
     random_char_idx = random.choice(range(len(sf_chars)))
     choices_ls = [1, 2, 3] # 1 = replacement; 2 = addition; 3=delete
@@ -86,6 +89,7 @@ def get_prop_material(smile, alphabet, num_random_samples, num_mutations):
     Given an input smile, perform mutations to the strucutre using provided SELFIE
     alphabet list. 'num_random_samples' number of different SMILES orientations are 
     considered & total 'num_mutations' are performed. 
+
     Parameters
     ----------
     smile : (str)
@@ -96,6 +100,7 @@ def get_prop_material(smile, alphabet, num_random_samples, num_mutations):
         Number of different SMILES orientations to be formed for the input smile.
     num_mutations : TYPE
         Number of mutations to perform on each of different orientations SMILES.
+
     Returns
     -------
     mutated_smiles_canon : (list of strings)
@@ -138,10 +143,12 @@ def get_prop_material(smile, alphabet, num_random_samples, num_mutations):
 def sanitize_smiles(smi):
     '''
     Return a canonical smile representation of smi 
+
     Parameters
     ----------
     smi : str
         smile string to be canonicalized 
+
     Returns
     -------
     mol (rdkit.Chem.rdchem.Mol) : 
@@ -162,6 +169,7 @@ def sanitize_smiles(smi):
 def get_chunks(arr, num_processors, ratio):
     '''
     Split list of SMILES int sublists, each of which will be operated on seperate cpus. 
+
     Parameters
     ----------
     arr : (list of sts)
@@ -170,6 +178,7 @@ def get_chunks(arr, num_processors, ratio):
         Number of cpus available for conducting operation.
     ratio : (int)
         number of operations that will be performed on each cpu.
+
     Returns
     -------
     chunks: (list of lists)
@@ -199,16 +208,19 @@ def calc_parr_prop(unseen_smile_ls, property_name, props_collect, num_random_sam
 def create_parr_process(chunks, alphabet, property_name, num_random_samples, num_mutations):
     '''
     Create parallel processes for creating mutating molecules for molecule in sublist chunks. 
+
     Parameters
     ----------
     chunks : (list of list)
         list of lists containing SMILES.
     property_name : (syr)
         optional name paramtere to enter.
+
     Returns
     -------
     combined_dict : (dict)
         input smiles -> [List of mutated smiles].
+
     '''
     process_collector    = []
     collect_dictionaries = []
@@ -256,3 +268,21 @@ def get_mutated_smiles(smiles, alphabet, space='Explore'):
 if __name__ == '__main__': 
     molecules_here        = ['CCC', 'CCCC', 'CCCCC', 'CCCCCCCC', 'CS', 'CSSS', 'CSSSSS', 'CF', 'CI', 'CBr', 'CSSSSSSSSSSSS', 'CSSSSSSSSSC', 'CSSSSCCSSSC', 'CSSSSSSSSSF', 'SSSSSC']
     A = get_mutated_smiles(molecules_here, alphabet=['[C]']*500, space='Explore')
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

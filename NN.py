@@ -17,16 +17,12 @@ from rdkit.Chem import Descriptors
 RDLogger.DisableLog('rdApp.*')
 
 import inspect
+import pickle
 from collections import OrderedDict
 
 import multiprocessing
-
-import pickle
-
-global manager, lock
-
-# manager = multiprocessing.Manager()
-# lock = multiprocessing.Lock()
+manager = multiprocessing.Manager()
+lock = multiprocessing.Lock()
 
 
 
@@ -307,9 +303,7 @@ def create_parr_process(chunks):
     Returns:
     None : All results are recorde in dictionary 'dataset_x'
     '''
-    # Assign data to each process
-    manager = multiprocessing.Manager()
-    lock = multiprocessing.Lock() 
+    # Assign data to each process 
     process_collector = []
     collect_dictionaries = []
     
@@ -425,7 +419,6 @@ def save_model(model, generation_index, dir_name):
 def load_saved_model(generation_index):
     # model = torch.load('./RESULTS/{}/model'.format(generation_index))
     # model = model.eval()
-    # return model
     model = pickle.load(open('sarsmodel.pkl', 'rb'))
     model = model.model
     return model 
@@ -465,6 +458,12 @@ def obtain_new_pred(smiles_ls, generation_index):
     for i,smi in enumerate(smiles_ls): 
         if i % 10000 == 0: 
             print('        Predicting: {}/{}'.format(i, len(smiles_ls)))
+        # data_x  = obtain_discr_encoding([smi], 1)
+        # data_x  = torch.tensor(data_x.astype(np.float32), device='cpu')
+        # outputs = model(data_x)
+        # out_    = outputs.detach().cpu().numpy()
+        # predictions.append(float(out_[0]))
+
         data_x  = obtain_discr_encoding([smi], 1)
         data_x  = torch.tensor(data_x.astype(np.float32), device='cpu')
         # outputs = model(data_x)
@@ -473,3 +472,4 @@ def obtain_new_pred(smiles_ls, generation_index):
         predictions.append(float(out_[0]))
 
     return predictions
+

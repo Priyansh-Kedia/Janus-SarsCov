@@ -143,7 +143,7 @@ def get_good_bad_smiles(fitness, population, generation_size):
 
 
 if __name__ == '__main__': 
-    print("called this function")
+    
     params_ = generate_params()
     start_time = time.time()
     with open(params_['start_population'], 'r') as f: 
@@ -218,18 +218,13 @@ if __name__ == '__main__':
         for item in replace_smiles[len(replace_smiles)//2: ]: 
             smiles_join.append(item + 'xxx' + random.choice(keep_smiles))
         cross_smi_dict =  crossover_smiles_parr(smiles_join)              
-        
 
         all_mut_smiles = []
         del mut_smi_dict["lock"]
-        try:
-            for key in mut_smi_dict: 
-                all_mut_smiles.extend(mut_smi_dict[key])
-            all_mut_smiles = list(set(all_mut_smiles))
-            all_mut_smiles = [x for x in all_mut_smiles if x != '']
-        except Exception as e:
-            print("code break")
-            break
+        for key in mut_smi_dict: 
+            all_mut_smiles.extend(mut_smi_dict[key])
+        all_mut_smiles = list(set(all_mut_smiles))
+        all_mut_smiles = [x for x in all_mut_smiles if x != '']
         
         
         all_cros_smiles = []
@@ -308,13 +303,10 @@ if __name__ == '__main__':
 
         
         # STEP 3: CONDUCT LOCAL SEARCH: 
-        try:
-            smiles_local_search = [population[top_idx]]
-            mut_smi_dict_local  = get_mutated_smiles(smiles_local_search, alphabet=alphabet, space='Local')
-            mut_smi_dict_local  = mut_smi_dict_local[population[top_idx]]
-            mut_smi_dict_local  = [x for x in mut_smi_dict_local if x not in smiles_collector]
-        except KeyError as e:
-            break
+        smiles_local_search = [population[top_idx]]
+        mut_smi_dict_local  = get_mutated_smiles(smiles_local_search, alphabet=alphabet, space='Local')
+        mut_smi_dict_local  = mut_smi_dict_local[population[top_idx]]
+        mut_smi_dict_local  = [x for x in mut_smi_dict_local if x not in smiles_collector]
 
         fp_scores          = get_fp_scores(mut_smi_dict_local, population[top_idx])
         fp_sort_idx        = np.argsort(fp_scores)[::-1][: generation_size]
@@ -335,8 +327,8 @@ if __name__ == '__main__':
                 fitness.append(smiles_collector[item][0])
         
         idx_sort_lc = np.argsort(fitness_local_search)[::-1]
-        # print('    (Local) Top Fitness: {}'.format(fitness_local_search[idx_sort_lc[0]]))
-        # print('    (local) Top Smile: {}'.format(mut_smi_dict_local_calc[idx_sort_lc[0]]))
+        print('    (Local) Top Fitness: {}'.format(fitness_local_search[idx_sort_lc[0]]))
+        print('    (local) Top Smile: {}'.format(mut_smi_dict_local_calc[idx_sort_lc[0]]))
         
         # Store the results: 
         for item in mut_smi_dict_local_calc: 

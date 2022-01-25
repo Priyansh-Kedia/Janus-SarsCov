@@ -17,10 +17,8 @@ import multiprocessing
 from rdkit import RDLogger
 RDLogger.DisableLog('rdApp.*')
 
-
-global manager, lock
-# manager = multiprocessing.Manager()
-# lock = multiprocessing.Lock()
+manager = multiprocessing.Manager()
+lock = multiprocessing.Lock()
 
 
 def get_selfie_chars(selfie):
@@ -301,8 +299,6 @@ def create_parr_process(chunks, property_name):
         input smiles -> [List of crossover smiles].
 
     '''
-    manager = multiprocessing.Manager()
-    lock = multiprocessing.Lock()
     process_collector    = []
     collect_dictionaries = []
         
