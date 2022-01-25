@@ -16,8 +16,8 @@ from rdkit import RDLogger
 from rdkit.Chem import Descriptors
 RDLogger.DisableLog('rdApp.*')
 
-import inspect
 import pickle
+import inspect
 from collections import OrderedDict
 
 import multiprocessing
@@ -419,9 +419,11 @@ def save_model(model, generation_index, dir_name):
 def load_saved_model(generation_index):
     # model = torch.load('./RESULTS/{}/model'.format(generation_index))
     # model = model.eval()
+    # return model
+    # 
     model = pickle.load(open('sarsmodel.pkl', 'rb'))
     model = model.model
-    return model 
+    return model  
 
 def do_predictions(discriminator, data_x, device):
     discriminator = discriminator.eval()
