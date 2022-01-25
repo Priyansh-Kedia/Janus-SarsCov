@@ -242,6 +242,7 @@ def create_parr_process(chunks, alphabet, property_name, num_random_samples, num
             process_collector.append(multiprocessing.Process(target=calc_parr_prop, args=(item, property_name, props_collect, num_random_samples, num_mutations, alphabet, )))   
     
     for item in process_collector:
+        print("called here")
         item.start()
     
     for item in process_collector: # wait for all parallel processes to finish
