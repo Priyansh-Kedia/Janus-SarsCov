@@ -19,10 +19,9 @@
 # PPN: Process per node. Since each node has 56 cores and there
 #   are 4 threads per core, we want 4*68=224 process in each node
 
-#SBATCH -J janus    
-#SBATCH -N 4 -n 272
-#SBATCH -p normal
-#SBATCH -o janus.o%j
+#SBATCH -J janus
+#SBATCH -N 4 -n 80
+#SBATCH -p skx-normal
 #SBATCH -e janus.e%j
 #SBATCH -t 24:00:00
 #SBATCH --mail-type=all    # Send email at begin and end of job
