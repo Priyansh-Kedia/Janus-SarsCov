@@ -21,8 +21,8 @@ import inspect
 from collections import OrderedDict
 
 import multiprocessing
-manager = multiprocessing.Manager()
-lock = multiprocessing.Lock()
+# manager = multiprocessing.Manager()
+# lock = multiprocessing.Lock()
 
 
 
@@ -306,6 +306,9 @@ def create_parr_process(chunks):
     # Assign data to each process 
     process_collector = []
     collect_dictionaries = []
+
+    manager = multiprocessing.Manager()
+    lock = multiprocessing.Lock()
     
     for chunk in chunks:                # process initialization 
         dataset_x         = manager.dict(lock=True)

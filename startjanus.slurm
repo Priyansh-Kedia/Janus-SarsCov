@@ -22,6 +22,7 @@
 #SBATCH -J janus
 #SBATCH -N 4 -n 80
 #SBATCH -p skx-normal
+#SBATCH -o janus.o%j
 #SBATCH -e janus.e%j
 #SBATCH -t 24:00:00
 #SBATCH --mail-type=all    # Send email at begin and end of job

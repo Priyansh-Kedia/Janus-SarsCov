@@ -14,8 +14,8 @@ from rdkit.Chem import MolFromSmiles as smi2mol
 from rdkit.Chem import MolToSmiles as mol2smi
 from selfies import encoder, decoder 
 
-manager = multiprocessing.Manager()
-lock = multiprocessing.Lock()
+# manager = multiprocessing.Manager()
+# lock = multiprocessing.Lock()
 
 def get_selfie_chars(selfie):
     '''Obtain a list of all selfie characters in string selfie
@@ -231,7 +231,9 @@ def create_parr_process(chunks, alphabet, property_name, num_random_samples, num
     '''
     process_collector    = []
     collect_dictionaries = []
-        
+    manager = multiprocessing.Manager()
+    lock = multiprocessing.Lock()
+    
     for item in chunks:
         props_collect  = manager.dict(lock=True)
         smiles_map_    = manager.dict(lock=True)
