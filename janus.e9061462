@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "./JANUS.py", line 257, in <module>
+    new_predictions  = obtain_new_pred(all_smiles_unique, generation_index=gen_)
+  File "/work2/08213/pkedia/stampede2/Janus-SarsCov/NN.py", line 458, in obtain_new_pred
+    model = load_saved_model(generation_index=generation_index) 
+  File "/work2/08213/pkedia/stampede2/Janus-SarsCov/NN.py", line 424, in load_saved_model
+    model = pickle.load(open('sarsmodel.pkl', 'rb'))
+_pickle.UnpicklingError: invalid load key, '\x0a'.
