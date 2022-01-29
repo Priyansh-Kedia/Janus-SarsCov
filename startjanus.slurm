@@ -20,11 +20,11 @@
 #   are 4 threads per core, we want 4*68=224 process in each node
 
 #SBATCH -J janus
-#SBATCH -N 4 -n 80
+#SBATCH -N 8 -n 160
 #SBATCH -p skx-normal
 #SBATCH -o janus.o%j
 #SBATCH -e janus.e%j
-#SBATCH -t 24:00:00
+#SBATCH -t 48:00:00
 #SBATCH --mail-type=all    # Send email at begin and end of job
 #SBATCH -A VinaXB       # Project/Allocation name (req'd if you have more than 1)
 #SBATCH --mail-user=kediapriyansh@gmail.com
