@@ -20,8 +20,8 @@
 #   are 4 threads per core, we want 4*68=224 process in each node
 
 #SBATCH -J janus
-#SBATCH -N 8 -n 160
-#SBATCH -p skx-normal
+#SBATCH -N 4 -n 272
+#SBATCH -p normal
 #SBATCH -o janus.o%j
 #SBATCH -e janus.e%j
 #SBATCH -t 48:00:00
