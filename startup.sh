@@ -1,1 +1,10 @@
-python3 JANUS.py
+python3 JANUS.py --file "./DATA/small_file_1000.txt"
+python3 JANUS.py --file "./DATA/small_file_2000.txt"
+python3 JANUS.py --file "./DATA/small_file_3000.txt"
+python3 JANUS.py --file "./DATA/small_file_4000.txt"
+python3 JANUS.py --file "./DATA/small_file_5000.txt"
+python3 JANUS.py --file "./DATA/small_file_6000.txt"
+python3 JANUS.py --file "./DATA/small_file_7000.txt"
+python3 JANUS.py --file "./DATA/small_file_8000.txt"
+python3 JANUS.py --file "./DATA/small_file_9000.txt"
+python3 JANUS.py --file "./DATA/small_file_10000.txt"

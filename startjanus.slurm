@@ -45,6 +45,11 @@ conda activate janus
 # conda env update --file env.yml --prune
 # conda install --file environment.txt
 
-./JANUS.py
+export LAUNCHER_WORKDIR=/work2/08213/pkedia/stampede2/Janus-SarsCov
+export LAUNCHER_JOB_FILE=startup.sh
+
+${LAUNCHER_DIR}/paramrun
+
+# ./JANUS.py
 
 conda deactivate
