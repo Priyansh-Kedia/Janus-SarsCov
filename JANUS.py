@@ -5,7 +5,11 @@ Created on Fri Apr 23 04:14:17 2021
 
 @author: akshat
 """
-import time 
+import argparse
+import time
+import sys
+
+# from parso import parser
 import numpy as np 
 import random
 from rdkit.Chem import MolFromSmiles as smi2mol
@@ -27,6 +31,9 @@ warnings.filterwarnings("ignore")
 
 from params_init import calc_prop, generate_params
 from NN import train_and_save_model, obtain_new_pred
+
+
+
 
 
 def sanitize_smiles(smi):    
@@ -143,8 +150,16 @@ def get_good_bad_smiles(fitness, population, generation_size):
 
 
 if __name__ == '__main__': 
-    
-    params_ = generate_params()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--file", action = "store", dest = "file", required = True, help= "File Path")
+    args = parser.parse_args()
+
+    if not args.file:
+        sys.exit(0)
+
+    filename = args.file
+
+    params_ = generate_params(filename)
     start_time = time.time()
     with open(params_['start_population'], 'r') as f: 
         init_smiles = f.readlines()

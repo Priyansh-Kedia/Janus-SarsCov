@@ -7,7 +7,7 @@ Created on Sat Jul 31 14:46:02 2021
 """
 
 
-def generate_params(): 
+def generate_params(filename): 
     '''
     Parameters for initiating JANUS. The parameters here are picked based on prior 
     experience by the authors of the paper. 
@@ -23,7 +23,7 @@ def generate_params():
     
     # Location of file containing SMILES that will be user for the initial population. 
     # NOTE: number of smiles must be greater than generation size. 
-    params_['start_population']   = './DATA/sample_start_smiles.txt'
+    params_['start_population']   = filename # './DATA/sample_start_smiles.txt'
     
     # Number of molecules that are exchanged between the exploration and exploitation 
     # componenets of JANUS. 
