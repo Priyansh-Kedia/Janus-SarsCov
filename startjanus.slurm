@@ -20,11 +20,11 @@
 #   are 4 threads per core, we want 4*68=224 process in each node
 
 #SBATCH -J janus
-#SBATCH -N 8 -n 160
+#SBATCH -N 1 -n 1
 #SBATCH -p skx-normal
 #SBATCH -o janus.o%j
 #SBATCH -e janus.e%j
-#SBATCH -t 48:00:00
+#SBATCH -t 24:00:00
 #SBATCH --mail-type=all    # Send email at begin and end of job
 #SBATCH -A VinaXB       # Project/Allocation name (req'd if you have more than 1)
 #SBATCH --mail-user=kediapriyansh@gmail.com
@@ -33,6 +33,8 @@
 #------------------------------------------------------
 module purge
 module load TACC
+module load python_cacher
+module load remora
 module load launcher
 source /work2/08213/pkedia/stampede2/anaconda3/etc/profile.d/conda.sh
 conda activate janus
@@ -45,11 +47,12 @@ conda activate janus
 # conda env update --file env.yml --prune
 # conda install --file environment.txt
 
-export LAUNCHER_WORKDIR=/work2/08213/pkedia/stampede2/Janus-SarsCov
-export LAUNCHER_JOB_FILE=startup.sh
+# export LAUNCHER_WORKDIR=/work2/08213/pkedia/stampede2/Janus-SarsCov
+# export LAUNCHER_JOB_FILE=startup.sh
 
-${LAUNCHER_DIR}/paramrun
+# ${LAUNCHER_DIR}/paramrun
 
 # ./JANUS.py
+remora python JANUS.py
 
 conda deactivate
