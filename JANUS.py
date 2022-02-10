@@ -150,14 +150,14 @@ def get_good_bad_smiles(fitness, population, generation_size):
 
 
 if __name__ == '__main__': 
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--file", action = "store", dest = "file", required = True, help= "File Path")
-    args = parser.parse_args()
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument("--file", action = "store", dest = "file", required = True, help= "File Path")
+    # args = parser.parse_args()
 
-    if not args.file:
-        sys.exit(0)
+    # if not args.file:
+    #     sys.exit(0)
 
-    filename = args.file
+    filename = './DATA/sample_start_smiles.txt'
 
     params_ = generate_params(filename)
     start_time = time.time()
