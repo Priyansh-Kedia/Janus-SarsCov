@@ -16,7 +16,7 @@ def generate_params(filename):
     params_ = {}
     
     # Number of iterations that JANUS runs for: 
-    params_['generations']        = 200
+    params_['generations']        = 5 # 200
     
     # The number of molecules for which fitness calculations are done, within each generation
     params_['generation_size']    = 5000
