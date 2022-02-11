@@ -1,0 +1,120 @@
+<html> 
+<head> 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+<script type="text/javascript"> 
+google.charts.load('current', {'packages':['corechart']}); 
+google.charts.setOnLoadCallback(drawTcpu0); 
+function drawTcpu0() { 
+var data = new google.visualization.DataTable(); 
+data.addColumn('number', ' TIME '); 
+data.addColumn('number', ' CPU0 '); 
+data.addColumn('number', ' Core0 '); 
+data.addColumn('number', ' Core1 '); 
+data.addColumn('number', ' Core2 '); 
+data.addColumn('number', ' Core3 '); 
+data.addColumn('number', ' Core4 '); 
+data.addColumn('number', ' Core5 '); 
+data.addColumn('number', ' Core8 '); 
+data.addColumn('number', ' Core9 '); 
+data.addColumn('number', ' Core10 '); 
+data.addColumn('number', ' Core11 '); 
+data.addColumn('number', ' Core12 '); 
+data.addColumn('number', ' Core13 '); 
+data.addColumn('number', ' Core16 '); 
+data.addColumn('number', ' Core17 '); 
+data.addColumn('number', ' Core18 '); 
+data.addColumn('number', ' Core19 '); 
+data.addColumn('number', ' Core20 '); 
+data.addColumn('number', ' Core21 '); 
+data.addColumn('number', ' Core24 '); 
+data.addColumn('number', ' Core25 '); 
+data.addColumn('number', ' Core26 '); 
+data.addColumn('number', ' Core27 '); 
+data.addColumn('number', ' Core28 '); 
+data.addColumn('number', ' Core29 '); 
+data.addRows([
+[0,43000,42000,42000,41000,41000,42000,43000,39000,41000,41000,40000,39000,39000,41000,42000,41000,41000,40000,41000,37000,39000,40000,40000,39000,37000], 
+[10,44000,41000,41000,41000,40000,41000,43000,38000,39000,40000,40000,38000,38000,40000,41000,40000,40000,39000,40000,36000,38000,39000,39000,38000,37000], 
+[21,43000,42000,41000,41000,40000,41000,43000,38000,39000,40000,40000,38000,38000,40000,40000,40000,39000,39000,39000,37000,38000,39000,39000,38000,36000], 
+[31,43000,41000,40000,40000,39000,41000,41000,37000,38000,39000,39000,38000,37000,39000,40000,39000,39000,38000,39000,36000,37000,38000,39000,37000,36000], 
+[41,41000,40000,40000,40000,39000,40000,41000,37000,38000,39000,39000,37000,37000,39000,39000,39000,39000,38000,39000,36000,37000,38000,38000,37000,36000], 
+[52,41000,40000,39000,39000,39000,40000,41000,37000,38000,39000,38000,37000,36000,38000,39000,39000,38000,38000,38000,35000,37000,37000,37000,37000,35000], 
+[62,42000,40000,39000,39000,39000,40000,42000,36000,37000,39000,38000,36000,36000,38000,39000,38000,38000,37000,38000,35000,36000,37000,37000,36000,35000], 
+]); 
+var options = {  
+title: 'CPU0 Temperature', 
+titleTextStyle: {color: 'blue', fontSize: '18'}, 
+fontSize: 18, 
+vAxis: {title: 'Degrees (milliCelcius)'}, 
+hAxis: {title: 'Time (s)'}, 
+legend: { position: 'top'}, 
+width:  1024, 
+height:  800 
+}; 
+var chart = new google.visualization.LineChart(document.getElementById('line_cpu0'));  
+chart.draw(data, options);  
+}  
+google.charts.setOnLoadCallback(drawTcpu1); 
+function drawTcpu1() { 
+var data = new google.visualization.DataTable(); 
+data.addColumn('number', ' TIME '); 
+data.addColumn('number', ' CPU1 '); 
+data.addColumn('number', ' Core0 '); 
+data.addColumn('number', ' Core1 '); 
+data.addColumn('number', ' Core2 '); 
+data.addColumn('number', ' Core3 '); 
+data.addColumn('number', ' Core4 '); 
+data.addColumn('number', ' Core5 '); 
+data.addColumn('number', ' Core8 '); 
+data.addColumn('number', ' Core9 '); 
+data.addColumn('number', ' Core10 '); 
+data.addColumn('number', ' Core11 '); 
+data.addColumn('number', ' Core12 '); 
+data.addColumn('number', ' Core13 '); 
+data.addColumn('number', ' Core16 '); 
+data.addColumn('number', ' Core17 '); 
+data.addColumn('number', ' Core18 '); 
+data.addColumn('number', ' Core19 '); 
+data.addColumn('number', ' Core20 '); 
+data.addColumn('number', ' Core21 '); 
+data.addColumn('number', ' Core24 '); 
+data.addColumn('number', ' Core25 '); 
+data.addColumn('number', ' Core26 '); 
+data.addColumn('number', ' Core27 '); 
+data.addColumn('number', ' Core28 '); 
+data.addColumn('number', ' Core29 '); 
+data.addRows([
+[0,37000,36000,37000,37000,35000,36000,36000,34000,35000,34000,35000,35000,34000,35000,35000,36000,35000,35000,36000,33000,33000,34000,35000,35000,33000], 
+[10,37000,35000,36000,35000,35000,35000,36000,33000,33000,34000,34000,35000,34000,34000,34000,35000,34000,34000,35000,32000,32000,33000,34000,34000,33000], 
+[21,36000,35000,36000,35000,34000,34000,35000,32000,33000,33000,34000,34000,33000,33000,34000,35000,33000,34000,34000,32000,31000,33000,33000,34000,32000], 
+[31,35000,35000,35000,35000,34000,35000,35000,32000,32000,33000,33000,34000,32000,33000,33000,35000,33000,33000,34000,32000,31000,32000,33000,33000,32000], 
+[41,35000,35000,34000,34000,34000,33000,35000,32000,32000,33000,33000,33000,32000,33000,33000,34000,33000,33000,34000,32000,31000,32000,33000,33000,31000], 
+[52,36000,35000,35000,34000,33000,33000,35000,32000,32000,32000,33000,33000,32000,32000,33000,34000,33000,33000,34000,31000,30000,32000,32000,33000,32000], 
+[62,35000,34000,34000,33000,33000,32000,34000,32000,31000,32000,32000,33000,31000,32000,32000,33000,32000,32000,33000,31000,30000,32000,32000,32000,31000], 
+]); 
+var options = {  
+title: 'CPU1 Temperature', 
+titleTextStyle: {color: 'blue', fontSize: '18'}, 
+fontSize: 18, 
+vAxis: {title: 'Degrees (milliCelcius)'}, 
+hAxis: {title: 'Time (s)'}, 
+legend: { position: 'top'}, 
+width:  1024, 
+height:  800 
+}; 
+var chart = new google.visualization.LineChart(document.getElementById('line_cpu1'));  
+chart.draw(data, options);  
+}  
+</script>  
+</head>  
+<body>  
+<table class='columns'> 
+<tr> 
+  <div id="line_cpu0"></div>  
+</tr> 
+<table class='columns'> 
+<tr> 
+  <div id="line_cpu1"></div>  
+</tr> 
+</body>  
+</html>  

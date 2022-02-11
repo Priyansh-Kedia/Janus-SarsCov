@@ -1,0 +1,156 @@
+<html> 
+<head> 
+ 
+NUMA Remote Assigned Mem: These are pages(MB) that overflow to another node when local memory is full.<br/> 
+NUMA All Mem Assignments: MBytes assigned with2MB pages (red); MBytes with 4K pages (blue). <br/> 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Usually best if all assigned memory is with 2MB pages<br/> 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp (a ~5% variation may exist, due to non instantaneous kernel updates).<br/> 
+NUMA Free: Total Free memory on all nodes (color areas show node portions).<br/> 
+NUMA Used: Total Used memory on all nodes (color areas show node portions).<br/> 
+ 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+<script type="text/javascript"> 
+google.charts.load('current', {'packages':['corechart']}); 
+google.charts.setOnLoadCallback(drawHits); 
+google.charts.setOnLoadCallback(drawMiss); 
+google.charts.setOnLoadCallback(drawFree); 
+google.charts.setOnLoadCallback(drawUsed); 
+function drawHits() { 
+var data = new google.visualization.DataTable(); 
+data.addColumn('number', 'Execution Time (s)'); 
+data.addColumn('number', '4KB Pages');   
+data.addColumn('number', '2MB Pages');   
+data.addRows([
+[0,0,0,],
+[10,0,0,],
+[21,0,0,],
+[31,40,12,],
+[41,0,0,],
+[51,0,0,],
+[62,0,0,],
+]); 
+var options = {  
+title : 'NUMA All Memory Assignments', 
+vAxis: {title: 'Allocated (MB)'}, 
+hAxis: {title: 'Time (s)'}, 
+seriesType: 'bars', 
+bar: { groupWidth: '95%' }, 
+isStacked: true, 
+width: 800,  
+height: 600,  
+axes: {  
+x: {  
+0: {side: 'top'}  
+}  
+},  
+ };  
+ var chart = new google.visualization.ComboChart(document.getElementById('chart_miss')); 
+chart.draw(data, options);  
+}  
+function drawMiss() { 
+var data = new google.visualization.DataTable(); 
+data.addColumn('number', 'Execution Time (s)'); 
+data.addColumn('number', 'Node0');   
+data.addColumn('number', 'Node1');   
+data.addRows([
+[0,0,0,],
+[10,0,0,],
+[21,0,0,],
+[31,0,0,],
+[41,0,0,],
+[51,0,0,],
+[62,0,0,],
+]); 
+var options = {  
+title : 'NUMA Remote Assigned Memory (foreign)', 
+vAxis: {title: 'Remote Allocated (MB)'}, 
+hAxis: {title: 'Time (s)'}, 
+seriesType: 'bars', 
+bar: { groupWidth: '95%' }, 
+isStacked: true, 
+width: 800,  
+height: 600,  
+axes: {  
+x: {  
+0: {side: 'top'}  
+}  
+},  
+ };  
+ var chart = new google.visualization.ComboChart(document.getElementById('chart_hits')); 
+chart.draw(data, options);  
+}  
+function drawFree() { 
+var data = google.visualization.arrayToDataTable([  
+['Execution Time (s)' 
+, 'Node0'   
+, 'Node1'   
+], 
+[0,92156.69,93922.53,],
+[10,92119.68,93707.52,],
+[21,92036.20,93657.10,],
+[31,91930.01,93657.21,],
+[41,91884.86,93657.61,],
+[51,91854.84,93610.68,],
+[62,91909.26,93602.04,],
+]); 
+var options = {  
+title : 'NUMA Free', 
+vAxis: {title: 'MBs'}, 
+hAxis: {title: 'Time (s)'}, 
+isStacked: true, 
+width: 800,  
+height: 600,  
+axes: {  
+x: {  
+0: {side: 'top'}  
+}  
+},  
+ };  
+ var chart = new google.visualization.AreaChart(document.getElementById('chart_free')); 
+chart.draw(data, options);  
+}  
+function drawUsed() { 
+var data = google.visualization.arrayToDataTable([  
+['Execution Time (s)' 
+, 'Node0'   
+, 'Node1'   
+], 
+[0,4740.36,4382.04,],
+[10,4777.44,4596.48,],
+[21,4862.16,4646.94,],
+[31,4967.58,4646.79,],
+[41,5012.20,4646.93,],
+[51,5042.13,4693.46,],
+[62,4989.35,4702.53,],
+]); 
+var options = {  
+title : 'NUMA Used', 
+vAxis: {title: 'MBs'}, 
+hAxis: {title: 'Time (s)'}, 
+isStacked: true, 
+width: 800,  
+height: 600,  
+axes: {  
+x: {  
+0: {side: 'top'}  
+}  
+},  
+ };  
+ var chart = new google.visualization.AreaChart(document.getElementById('chart_used')); 
+chart.draw(data, options);  
+}  
+</script>  
+</head>  
+<body>  
+<table class='columns'>  
+<tr>  
+<td width='800' height='600'><div id='chart_hits' style='border: 1px solid; color: LightGray'></div></td>  
+<td width='800' height='600'><div id='chart_miss' style='border: 1px solid; color: LightGray'></div></td>  
+</tr> 
+ <tr> 
+<td width='800' height='600'><div id='chart_free' style='border: 1px solid; color: LightGray'></div></td>  
+<td width='800' height='600'><div id='chart_used' style='border: 1px solid; color: LightGray'></div></td>  
+</tr>  
+</table> 
+</body>  
+</html>  

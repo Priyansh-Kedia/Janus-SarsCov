@@ -1,0 +1,118 @@
+Initial population obtained!
+Forming Fragments! 
+    Fragment creation: 0/10000
+    Fragment creation: 1000/10000
+    Fragment creation: 2000/10000
+    Fragment creation: 3000/10000
+    Fragment creation: 4000/10000
+    Fragment creation: 5000/10000
+    Fragment creation: 6000/10000
+    Fragment creation: 7000/10000
+    Fragment creation: 8000/10000
+    Fragment creation: 9000/10000
+On generation 0/5
+    (Explr) Top Fitness: 1.0
+    (Explr) Top Smile: CC=CCNC(=CC1=C=C=C(OC=O)NC1)SCCN(O)OCCSC
+    (Local) Top Fitness: 1.0
+    (local) Top Smile: SBr
+    Training Neural Net
+        Epoch:0 Loss:0.8880988955497742
+        Epoch:400 Loss:0.15467150509357452
+        Epoch:800 Loss:0.0660983994603157
+        Epoch:1200 Loss:0.036266762763261795
+        Epoch:1600 Loss:0.022686153650283813
+    Obtaining Predictions
+        Predicting: 0/89834
+        Predicting: 10000/89834
+        Predicting: 20000/89834
+        Predicting: 30000/89834
+        Predicting: 40000/89834
+        Predicting: 50000/89834
+        Predicting: 60000/89834
+        Predicting: 70000/89834
+        Predicting: 80000/89834
+On generation 1/5
+    (Explr) Top Fitness: 1.0
+    (Explr) Top Smile: CCC1=C2C=CCC=CC=CC2(CCN)C=C=N1
+    (Local) Top Fitness: 1.0
+    (local) Top Smile: C=NF
+    Training Neural Net
+        Epoch:0 Loss:0.8123279809951782
+        Epoch:400 Loss:0.11172013729810715
+        Epoch:800 Loss:0.048818930983543396
+        Epoch:1200 Loss:0.02711864933371544
+        Epoch:1600 Loss:0.017092972993850708
+    Obtaining Predictions
+        Predicting: 0/88578
+        Predicting: 10000/88578
+        Predicting: 20000/88578
+        Predicting: 30000/88578
+        Predicting: 40000/88578
+        Predicting: 50000/88578
+        Predicting: 60000/88578
+        Predicting: 70000/88578
+        Predicting: 80000/88578
+On generation 2/5
+    (Explr) Top Fitness: 1.0
+    (Explr) Top Smile: C=C1CNCCNNC(C)(OC=O)CCN1CCCC
+    (Local) Top Fitness: 1.0
+    (local) Top Smile: NBr
+    Training Neural Net
+        Epoch:0 Loss:0.9123002290725708
+        Epoch:400 Loss:0.12004701793193817
+        Epoch:800 Loss:0.04847795143723488
+        Epoch:1200 Loss:0.026125885546207428
+        Epoch:1600 Loss:0.016217175871133804
+    Obtaining Predictions
+        Predicting: 0/87280
+        Predicting: 10000/87280
+        Predicting: 20000/87280
+        Predicting: 30000/87280
+        Predicting: 40000/87280
+        Predicting: 50000/87280
+        Predicting: 60000/87280
+        Predicting: 70000/87280
+        Predicting: 80000/87280
+On generation 3/5
+    (Explr) Top Fitness: 1.0
+    (Explr) Top Smile: CCCCOC(=CC=CC(CN)=NC=O)CN
+    (Local) Top Fitness: 1.0
+    (local) Top Smile: FN1CCCCC=NC1
+    Training Neural Net
+        Epoch:0 Loss:0.8012871146202087
+        Epoch:400 Loss:0.13381901383399963
+        Epoch:800 Loss:0.04620738327503204
+        Epoch:1200 Loss:0.024520495906472206
+        Epoch:1600 Loss:0.015227077528834343
+    Obtaining Predictions
+        Predicting: 0/87317
+        Predicting: 10000/87317
+        Predicting: 20000/87317
+        Predicting: 30000/87317
+        Predicting: 40000/87317
+        Predicting: 50000/87317
+        Predicting: 60000/87317
+        Predicting: 70000/87317
+        Predicting: 80000/87317
+On generation 4/5
+    (Explr) Top Fitness: 1.0
+    (Explr) Top Smile: CN=CCN(CN(C)N=O)C1C=CCCC1
+    (Local) Top Fitness: 1.0
+    (local) Top Smile: FF
+
+
+=============================== REMORA SUMMARY ===============================
+ Max Virtual  Memory Per Node :   338.70 GB
+ Max Physical Memory Per Node :    40.31 GB
+ Available Memory at time 0.0 :   177.97 GB
+ Total Elapsed Time           :  0d 0h 50m 45s 419ms
+------------------------------------------------------------------------------
+ Max IO Load / home1          :       0 IOPS       0 RD(MB/S)       0 WR(MB/S)
+ Max IO Load / scratch        :       0 IOPS       0 RD(MB/S)       0 WR(MB/S)
+ Max IO Load / work2          :    2509 IOPS      11 RD(MB/S)       0 WR(MB/S)
+==============================================================================
+ Sampling Period              : 10 seconds
+ Report Directory             : R=/work2/08213/pkedia/stampede2/Janus-SarsCov/remora_9126757
+ Google Plots HTML Index Page : $R/remora_summary.html
+==============================================================================
+

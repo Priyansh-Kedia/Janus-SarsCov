@@ -1,0 +1,50 @@
+<html> 
+<head> 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+<script type="text/javascript"> 
+google.charts.load('current', {'packages':['line']}); 
+google.charts.setOnLoadCallback(drawChart); 
+function drawChart() { 
+var data = new google.visualization.DataTable(); 
+data.addColumn('number', 'Execution Time (s)'); 
+data.addColumn('number', 'Messages Alloc'); 
+data.addColumn('number', 'Messages Max'); 
+data.addColumn('number', 'Errors'); 
+data.addColumn('number', 'Send Count'); 
+data.addColumn('number', 'Received Count'); 
+data.addColumn('number', 'Route Count'); 
+data.addColumn('number', 'Drop Count'); 
+data.addColumn('number', 'Send Length'); 
+data.addColumn('number', 'Received Length'); 
+data.addColumn('number', 'Route Length'); 
+data.addColumn('number', 'Drop Length'); 
+data.addRows([
+[0,0,0,0,0,0,0,0,0,0,0,0,], 
+[10,0,0,0,5065,5060,0,0,1727175,137829676,0,0,], 
+[21,0,0,0,8848,8843,0,0,3098297,226223193,0,0,], 
+[31,0,0,0,13639,13632,0,0,4331142,309088201,0,0,], 
+[41,-1,0,0,17810,17801,0,0,5389613,335773849,0,0,], 
+[52,0,0,0,22835,22824,0,0,7287852,372956173,0,0,], 
+[62,0,0,0,27873,27861,0,0,9585297,411719257,0,0,], 
+]); 
+var options = {  
+chart: { 
+title: 'LNET Stats', 
+}, 
+width: 1024,  
+height: 800,  
+axes: {  
+x: {  
+0: {side: 'top'}  
+}  
+},  
+ };  
+var chart = new google.charts.Line(document.getElementById('line_top_x'));  
+chart.draw(data, options);  
+}  
+</script>  
+</head>  
+<body>  
+  <div id="line_top_x"></div>  
+</body>  
+</html>  
