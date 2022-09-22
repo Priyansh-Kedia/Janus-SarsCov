@@ -26,7 +26,7 @@
 #SBATCH -e janus.e%j
 #SBATCH -t 24:00:00
 #SBATCH --mail-type=all    # Send email at begin and end of job
-#SBATCH -A VinaXB       # Project/Allocation name (req'd if you have more than 1)
+#SBATCH -A Cheminfomratics-comm       # Project/Allocation name (req'd if you have more than 1)
 #SBATCH --mail-user=kediapriyansh@gmail.com
 
 
