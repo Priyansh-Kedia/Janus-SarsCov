@@ -21,8 +21,8 @@ import inspect
 from collections import OrderedDict
 
 import multiprocessing
-manager = multiprocessing.Manager()
-lock = multiprocessing.Lock()
+# manager = multiprocessing.Manager()
+# lock = multiprocessing.Lock()
 
 
 
@@ -307,8 +307,8 @@ def create_parr_process(chunks):
     process_collector = []
     collect_dictionaries = []
 
-    # manager = multiprocessing.Manager()
-    # lock = multiprocessing.Lock()
+    manager = multiprocessing.Manager()
+    lock = multiprocessing.Lock()
     
     for chunk in chunks:                # process initialization 
         dataset_x         = manager.dict(lock=True)
@@ -428,6 +428,20 @@ def load_saved_model(generation_index):
     model = model.model
     return model  
 
+def load_saved_model_by_name(model_name):
+    # model = torch.load('./RESULTS/{}/model'.format(generation_index))
+    # model = model.eval()
+    # return model
+    model = None
+    try:
+        model = torch.load(model_name)
+        model = model.eval()
+    except Exception as e:
+        print(model_name)
+        model = pickle.load(open(model_name, 'rb'))
+        model = model.model
+    return model  
+
 def do_predictions(discriminator, data_x, device):
     discriminator = discriminator.eval()
     
@@ -474,7 +488,65 @@ def obtain_new_pred(smiles_ls, generation_index):
         # outputs = model(data_x)
         outputs = model.predict(data_x)
         out_    = outputs #.detach().cpu().numpy()
+        print("out", out_)
         predictions.append(float(out_[0]))
 
     return predictions
 
+def run_classifiers(models, data_x, weights = []):
+    if not weights:
+        weights = [1 for _ in range(len(models))]
+    
+    total_weight = sum(weights)
+
+    output_sum = 0
+    for idx, model in enumerate(models):
+        outputs = model.predict(data_x)
+        output_sum += outputs * weights[idx]
+        # all_outputs.append(outputs)
+
+    output = output_sum / total_weight
+
+    return output
+
+def obtain_new_pred(smiles_ls, generation_index):
+    predictions = []
+
+    models = []
+
+    classifier_names = open('classifiers.txt', 'r')
+
+    for classifier_name in classifier_names.readlines():
+        model = load_saved_model_by_name(model_name= classifier_name.strip("\n")) 
+        models.append(model)
+
+    for i,smi in enumerate(smiles_ls): 
+        if i % 10000 == 0: 
+            print('        Predicting: {}/{}'.format(i, len(smiles_ls)))
+        # data_x  = obtain_discr_encoding([smi], 1)
+        # data_x  = torch.tensor(data_x.astype(np.float32), device='cpu')
+        # outputs = model(data_x)
+        # out_    = outputs.detach().cpu().numpy()
+        # predictions.append(float(out_[0]))
+
+        data_x  = obtain_discr_encoding([smi], 1)
+        data_x  = torch.tensor(data_x.astype(np.float32), device='cpu')
+        # outputs = model(data_x)
+        # all_outputs = []
+
+        # for model in models:
+        #     outputs = model.predict(data_x)
+        #     all_outputs.append(outputs)
+        #     # out_ = outputs
+        # sum = 0
+        # for output in all_outputs:
+        #     sum += output
+
+        out_ = run_classifiers(models, data_x)
+        # out_ = sum / len(all_outputs)
+        print("predicting here")
+        outputs = model.predict(data_x)
+        # out_    = outputs #.detach().cpu().numpy()
+        predictions.append(float(out_[0]))
+
+    return predictions

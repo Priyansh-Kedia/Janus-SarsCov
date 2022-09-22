@@ -1,3 +1,0 @@
-Warning: Permanently added 'c486-102' (ECDSA) to the list of known hosts.
-usage: JANUS.py [-h] --file FILE
-JANUS.py: error: the following arguments are required: --file
