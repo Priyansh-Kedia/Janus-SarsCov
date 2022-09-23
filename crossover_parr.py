@@ -17,8 +17,8 @@ import multiprocessing
 from rdkit import RDLogger
 RDLogger.DisableLog('rdApp.*')
 
-# manager = multiprocessing.Manager()
-# lock = multiprocessing.Lock()
+manager = multiprocessing.Manager()
+lock = multiprocessing.Lock()
 
 
 def get_selfie_chars(selfie):
@@ -301,8 +301,8 @@ def create_parr_process(chunks, property_name):
     '''
     process_collector    = []
     collect_dictionaries = []
-    manager = multiprocessing.Manager()
-    lock = multiprocessing.Lock()
+    # manager = multiprocessing.Manager()
+    # lock = multiprocessing.Lock()
 
     for item in chunks:
         props_collect  = manager.dict(lock=True)
