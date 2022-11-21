@@ -1,0 +1,14 @@
+=============================== REMORA SUMMARY ===============================
+ Max Virtual  Memory Per Node :   329.64 GB
+ Max Physical Memory Per Node :    44.84 GB
+ Available Memory at time 0.0 :   177.99 GB
+ Total Elapsed Time           :  0d 0h 32m 40s 497ms
+------------------------------------------------------------------------------
+ Max IO Load / home1          :       0 IOPS       0 RD(MB/S)       0 WR(MB/S)
+ Max IO Load / scratch        :       0 IOPS       0 RD(MB/S)       0 WR(MB/S)
+ Max IO Load / work2          :       0 IOPS       0 RD(MB/S)       0 WR(MB/S)
+==============================================================================
+ Sampling Period              : 10 seconds
+ Report Directory             : R=/work2/08213/pkedia/stampede2/Janus-SarsCov/remora_10575404
+ Google Plots HTML Index Page : $R/remora_summary.html
+==============================================================================

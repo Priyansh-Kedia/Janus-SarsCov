@@ -1,0 +1,23 @@
+export REMORA_OUTDIR=/work2/08213/pkedia/stampede2/Janus-SarsCov/remora_10575404
+export REMORA_TMPDIR=/work2/08213/pkedia/stampede2/Janus-SarsCov/remora_10575404
+export REMORA_WARNING=1
+export REMORA_MODE=FULL
+export REMORA_PERIOD=10
+export REMORA_VERBOSE=0
+export REMORA_MONITOR_PERIOD=10
+export REMORA_SCHEDULER=slurm
+export REMORA_JOB_ID=10575404
+export REMORA_PARALLEL=0
+export REMORA_SYMMETRIC=0
+export REMORA_EFFECTIVE_PERIOD=9
+export REMORA_PLOT_RESULTS=1
+export REMORA_CUDA=0
+export REMORA_LUSTRE=1
+export REMORA_DVS=0
+export I_MPI_STATS=ipm
+export I_MPI_STATS_FILE=impi_data.txt
+export REMORA_TEMPERATURE_IGNORE=0
+#EOF
+#EOF
+#EOF
+#EOF
