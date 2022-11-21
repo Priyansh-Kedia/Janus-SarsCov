@@ -19,12 +19,12 @@
 # PPN: Process per node. Since each node has 56 cores and there
 #   are 4 threads per core, we want 4*68=224 process in each node
 
-#SBATCH -J janus
-#SBATCH -N 1 -n 1
-#SBATCH -p skx-normal
-#SBATCH -o janus.o%j
-#SBATCH -e janus.e%j
-#SBATCH -t 24:00:00
+#SBATCH -J janus # job name
+#SBATCH -N 1 -n 1 # number of cores and nodes
+#SBATCH -p skx-normal # queue
+#SBATCH -o janus.o%j # output file
+#SBATCH -e janus.e%j # error file 
+#SBATCH -t 24:00:00 # time for which the code will run
 #SBATCH --mail-type=all    # Send email at begin and end of job
 #SBATCH -A Cheminfomratics-comm       # Project/Allocation name (req'd if you have more than 1)
 #SBATCH --mail-user=kediapriyansh@gmail.com
